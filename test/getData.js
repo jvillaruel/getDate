@@ -14,9 +14,7 @@ class DateHelper {
   }
 
   getLastDay(input) {
-    // Lets convert the string to date format
     const formattedDate = this._convertToDate(input)
-    // Lets do the transformation
     const getLastDay = this._getLastDateOfTheMonth(formattedDate)
     return getLastDay;
   }
@@ -25,16 +23,13 @@ class DateHelper {
     let temp = false
     if (input) {
       each(this.formats, (format) => {
-        // Iterate the config until we got the correct date format
-        // To make this more faster, just empose a strict date input format
         if (temp === false || !temp?.isValid()) {
           try {
             temp = moment(input, format)
-          } catch (e) { } // supress the error.
+          } catch (e) { }
         }
 
         if (temp?.isValid()) {
-          // If its valid then stop the loop
           return true
         }
       })
@@ -53,7 +48,7 @@ class DateHelper {
     }
     // console.log(input)
     return moment(input).endOf('month').format('DD');
-    // return moment().endOf('month').format('DD')
+
   }
 }
 
